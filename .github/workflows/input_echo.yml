@@ -61,7 +61,7 @@ jobs:
           echo "Files 04 " > ./artifacts/file04.txt
 
       - name: List
-        run: ls
+        run: ls ./artifacts
 
       - name: Send artifacts
         uses: actions/upload-artifact@v4.3.3
@@ -69,4 +69,4 @@ jobs:
           path: ./artifacts
       
       - name: List generated artifacts 
-        run: ls
+        run: find .
