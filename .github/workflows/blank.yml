@@ -3,11 +3,32 @@ name: CI
 on:
   push:
     branches: [ $default-branch ]
+  
   workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: Who to greet
+        options: 
+        - monalisa
+        - cschleiden
+      message:
+        required: true
+      use-emoji:
+        type: boolean
+        description: Include 🎉🤣 emojis
+      environment:
+        type: environment
 
 jobs:
-  build:
+
+  build:  
     runs-on: ubuntu-latest
     steps:      
-      - name: Run a one-line script
-        run: echo Hello from Octo Organization
+      - name: Build process
+        run: echo Hello Build
+      - name: inputs came from input list
+        run: |
+          echo choice -> "${{ github.event.inputs.choice }}"
+          echo message -> "${{ github.event.inputs.message }}"
+          echo  use-emoji -> "${{ github.event.inputs. use-emoji }}"
