@@ -74,5 +74,5 @@ jobs:
         run: "echo ${{ format('Usuario {0} informou o numero {1} com o emoji: {2}', inputs.usuario, inputs.numero, inputs.use-emoji) }}"
       
       - name: JSON
-        run: "echo ${{ toJson(github) }}"
+        run: echo "${{ toJson(github) }}""
         
