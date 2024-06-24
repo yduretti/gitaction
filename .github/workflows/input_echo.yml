@@ -1,39 +1,72 @@
-name: CI
+# name: CI
 
-on:
-  push:
-    branches: [ $default-branch ]
+# on:
+#   push:
+#     branches: [ $default-branch ]
   
-  workflow_dispatch:
-    inputs:
-      name:
-        type: choice
-        description: Who to greet
-        options: 
-        - monalisa
-        - cschleiden
-      message:
-        required: true
-      use-emoji:
-        type: boolean
-        description: Include 🎉🤣 emojis
-      environment:
-        type: environment
+#   workflow_dispatch:
+#     inputs:
+#       name:
+#         type: choice
+#         description: Who to greet
+#         options: 
+#         - monalisa
+#         - cschleiden
+#       message:
+#         required: true
+#       use-emoji:
+#         type: boolean
+#         description: Include 🎉🤣 emojis
+#       environment:
+#         type: environment
 
+# jobs:
+
+#   build:  
+#     runs-on: ubuntu-latest
+#     steps:      
+#       - name: Build process
+#         run: echo Hello Build
+
+#       - name: listagem files process
+#         run: ls
+        
+#       - name: inputs came from input list
+#         run: |
+#           echo "choice -> ${{ inputs.name }}"
+#           echo "message -> ${{ inputs.message }}"
+#           echo  "use-emoji -> ${{ inputs.use-emoji }}"
+#           echo  "environment -> ${{ inputs.environment }}"
+
+name: CI
+run-name: Worflow para artifacts, executado por ${{ github.actor }}
+
+on:  
+  workflow_dispatch:
+  
 jobs:
 
-  build:  
+  files:  
     runs-on: ubuntu-latest
     steps:      
-      - name: Build process
-        run: echo Hello Build
-
-      - name: listagem files process
+      - name: List
         run: ls
-        
-      - name: inputs came from input list
+
+      - name: Make some files
         run: |
-          echo "choice -> ${{ inputs.name }}"
-          echo "message -> ${{ inputs.message }}"
-          echo  "use-emoji -> ${{ inputs.use-emoji }}"
-          echo  "environment -> ${{ inputs.environment }}"
+          mkdir artifacts
+          echo "Files 01 " > ./artifacts/file01.txt
+          echo "Files 02 " > ./artifacts/file02.txt
+          echo "Files 03 " > ./artifacts/file03.txt
+          echo "Files 04 " > ./artifacts/file04.txt
+
+      - name: List
+        run: ls
+
+      - name: Send artifacts
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          path: ./artifacts
+      
+      - name: List generated artifacts 
+        run: ls
