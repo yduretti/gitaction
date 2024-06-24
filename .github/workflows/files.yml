@@ -1,0 +1,32 @@
+name: CI
+run-name: Worflow para artifacts, executado por ${{ github.actor }}
+
+on:  
+  workflow_dispatch:
+  
+jobs:
+
+  files:  
+    runs-on: ubuntu-latest
+    steps:      
+      - name: List
+        run: ls
+
+      - name: Make some files
+        run: |
+          mkdir artifacts
+          echo "Files 01 " > ./artifacts/file01.txt
+          echo "Files 02 " > ./artifacts/file02.txt
+          echo "Files 03 " > ./artifacts/file03.txt
+          echo "Files 04 " > ./artifacts/file04.txt
+
+      - name: List
+        run: ls
+
+      - name: Send artifacts
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          path: ./artifacts
+      
+      - name: List generated artifacts 
+        run: ls
