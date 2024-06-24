@@ -29,6 +29,6 @@ jobs:
         run: echo Hello Build
       - name: inputs came from input list
         run: |
-          echo choice -> "${{ github.event.inputs.choice }}"
-          echo message -> "${{ github.event.inputs.message }}"
-          echo  use-emoji -> "${{ github.event.inputs. use-emoji }}"
+          echo "choice -> ${{ inputs.choice }}"
+          echo "message -> ${{ inputs.message }}"
+          echo  "use-emoji -> ${{ inputs.use-emoji }}"
