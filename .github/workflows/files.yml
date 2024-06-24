@@ -57,7 +57,7 @@ on:
 jobs:
     
   operators:
-    
+
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:      
@@ -69,4 +69,10 @@ jobs:
       
       - name: use-emoji
         run: echo "${{ inputs.use-emoji}}"
+      
+      - name: format
+        run: "echo ${{ format('Usuario {0} informou o numero {1} com o emoji: {2}', inputs.usuario, inputs.numero, inputs.use-emoji) }}"
+      
+      - name: JSON
+        run: "echo ${{ toJson(github) }}"
         
