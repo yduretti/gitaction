@@ -27,6 +27,10 @@ jobs:
     steps:      
       - name: Build process
         run: echo Hello Build
+
+      - name: listagem files process
+        run: ls
+        
       - name: inputs came from input list
         run: |
           echo "choice -> ${{ inputs.name }}"
