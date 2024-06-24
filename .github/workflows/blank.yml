@@ -29,6 +29,7 @@ jobs:
         run: echo Hello Build
       - name: inputs came from input list
         run: |
-          echo "choice -> ${{ inputs.choice }}"
+          echo "choice -> ${{ inputs.name }}"
           echo "message -> ${{ inputs.message }}"
           echo  "use-emoji -> ${{ inputs.use-emoji }}"
+          echo  "environment -> ${{ inputs.environment }}"
